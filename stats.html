@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+        }
+    
+        #filter-section {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 25%;
+            padding: 20px;
+            background-color: #222;
+            border-right: 1px solid #444;
+        }
+    
+        #fraud-list {
+            width: 74%;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow-y: scroll;
+            height: 100vh;
+            background-color: #111;
+        }
+    
+        .fraud-box {
+            width: 47%;
+            height: 300px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            box-sizing: border-box;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            background-color: #333;
+            color: #fff;
+        }
+    
+        .fraud-box h3 {
+            margin-top: 0;
+        }
+    
+        .filter-select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+        }
+    
+        .filter-select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+    
+        .solved {
+            font-weight: bold;
+            color: green;
+        }
+    
+        .unsolved {
+            font-weight: bold;
+            color: red;
+        }
+    
+        .processing {
+            font-weight: bold;
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <div id="filter-section">
+        <h2>Filter</h2>
+        <label for="price-filter">Price:</label>
+        <select id="price-filter" class="filter-select" data-filter-key="amountlost">
+            <option value="">All</option>
+            <option value="less">Less than Rs.10,000</option>
+            <option value="greater">Greater than Rs.10,000</option>
+        </select><br>
+        <label for="fraud-type-filter">Fraud Type:</label>
+        <select id="fraud-type-filter" class="filter-select" data-filter-key="fraudtype">
+            <option value="">All</option>
+            <option value="Phishing">Phishing</option>
+            <option value="Identity Theft">Identity Theft</option>
+            <option value="Online Scam">Online Scam</option>
+            <option value="Hacking">Hacking</option>
+            <option value="Malware">Malware</option>
+        </select><br>
+        <label for="payment-method-filter">Payment Method:</label>
+        <select id="payment-method-filter" class="filter-select" data-filter-key="paymentmethod">
+            <option value="">All</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="Bank Transfer">Bank Transfer</option>
+            <option value="Cryptocurrency">Cryptocurrency</option>
+        </select><br>
+        <label for="status-filter">Status:</label>
+        <select id="status-filter" class="filter-select" data-filter-key="status">
+            <option value="">All</option>
+            <option value="Solved">Solved</option>
+            <option value="Unsolved">Unsolved</option>
+            <option value="Processing">Processing</option>
+        </select><br>
+    </div>
+    <div id="fraud-list">
+        <div class="fraud-box" data-name="John Doe" data-email="john.doe@example.com" data-incidentdatetime="2024-03-17 10:30:00" data-incidentdescription="Fraudulent activity" data-fraudtype="Phishing" data-amountlost="5000" data-paymentmethod="Credit Card" data-status="Solved">
+            <h3>John Doe</h3>
+            <p>Email: john.doe@example.com</p>
+            <p>Incident Date Time: 2024-03-17 10:30:00</p>
+            <p>Incident Description: Fraudulent activity</p>
+            <p>Fraud Type: Phishing</p>
+            <p>Amount Lost: Rs.5000</p>
+            <p>Payment Method: Credit Card</p>
+            <p>Status: Solved</p>
+        </div>
+        <div class="fraud-box" data-name="Jane Doe" data-email="jane.doe@example.com" data-incidentdatetime="2024-03-18 11:30:00" data-incidentdescription="Identity theft" data-fraudtype="Identity Theft" data-amountlost="10000" data-paymentmethod="Debit Card" data-status="Unsolved">
+          <h3>Jane Doe</h3>
+          <p>Email: jane.doe@example.com</p>
+          <p>Incident Date Time: 2024-03-18 11:30:00</p>
+          <p>Incident Description: Identity theft</p>
+          <p>Fraud Type: Identity Theft</p>
+          <p>Amount Lost: Rs.10000</p>
+          <p>Payment Method: Debit Card</p>
+          <p>Status: Unsolved</p>
+      </div>
+      <div class="fraud-box" data-name="Alice Smith" data-email="alice.smith@example.com" data-incidentdatetime="2024-03-19 12:30:00" data-incidentdescription="Online scam" data-fraudtype="Online Scam" data-amountlost="15000" data-paymentmethod="Bank Transfer" data-status="Processing">
+          <h3>Alice Smith</h3>
+          <p>Email: alice.smith@example.com</p>
+          <p>Incident Date Time: 2024-03-19 12:30:00</p>
+          <p>Incident Description: Online scam</p>
+          <p>Fraud Type: Online Scam</p>
+          <p>Amount Lost: Rs.15000</p>
+          <p>Payment Method: Bank Transfer</p>
+          <p>Status: Processing</p>
+      </div>
+      <div class="fraud-box" data-name="John Doe" data-email="john.doe@example.com" data-incidentdatetime="2024-03-17 10:30:00" data-incidentdescription="Fraudulent activity" data-fraudtype="Phishing" data-amountlost="5000" data-paymentmethod="Credit Card" data-status="Solved">
+            <h3>John Doe</h3>
+            <p>Email: john.doe@example.com</p>
+            <p>Incident Date Time: 2024-03-17 10:30:00</p>
+            <p>Incident Description: Fraudulent activity</p>
+            <p>Fraud Type: Phishing</p>
+            <p>Amount Lost: Rs.5000</p>
+            <p>Payment Method: Credit Card</p>
+            <p>Status: Solved</p>
+        </div>
+        <div class="fraud-box" data-name="Jane Doe" data-email="jane.doe@example.com" data-incidentdatetime="2024-03-18 11:30:00" data-incidentdescription="Identity theft" data-fraudtype="Identity Theft" data-amountlost="10000" data-paymentmethod="Debit Card" data-status="Unsolved">
+          <h3>Jane Doe</h3>
+          <p>Email: jane.doe@example.com</p>
+          <p>Incident Date Time: 2024-03-18 11:30:00</p>
+          <p>Incident Description: Identity theft</p>
+          <p>Fraud Type: Identity Theft</p>
+          <p>Amount Lost: Rs.10000</p>
+          <p>Payment Method: Debit Card</p>
+          <p>Status: Unsolved</p>
+      </div>
+      <div class="fraud-box" data-name="Alice Smith" data-email="alice.smith@example.com" data-incidentdatetime="2024-03-19 12:30:00" data-incidentdescription="Online scam" data-fraudtype="Online Scam" data-amountlost="15000" data-paymentmethod="Bank Transfer" data-status="Processing">
+          <h3>Alice Smith</h3>
+          <p>Email: alice.smith@example.com</p>
+          <p>Incident Date Time: 2024-03-19 12:30:00</p>
+          <p>Incident Description: Online scam</p>
+          <p>Fraud Type: Online Scam</p>
+          <p>Amount Lost: Rs.15000</p>
+          <p>Payment Method: Bank Transfer</p>
+          <p>Status: Processing</p>
+      </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterSelects = document.querySelectorAll('.filter-select');
+            const fraudList = document.getElementById('fraud-list');
+            let filters = {};
+
+            // Function to filter fraud cases based on selected filters
+            function filterFraudCases() {
+                filters = Array.from(filterSelects)
+                    .reduce((obj, select) => {
+                        const key = select.getAttribute('data-filter-key');
+                        const value = select.value;
+                        obj[key] = value;
+                        return obj;
+                    }, {});
+
+                const fraudBoxes = document.querySelectorAll('.fraud-box');
+                fraudBoxes.forEach(box => {
+                    const showBox = Object.entries(filters).every(([key, value]) => {
+                        if (key === 'amountlost') {
+                            const amount = parseFloat(box.getAttribute(`data-${key}`));
+                            if (value === 'less') {
+                                return amount < 10000;
+                            } else if (value === 'greater') {
+                                return amount >= 10000;
+                            } else {
+                                return true;
+                            }
+                        } else {
+                            return value === "" || box.getAttribute(`data-${key}`) === value;
+                        }
+                    });
+                    box.style.display = showBox ? 'block' : 'none';
+                    if (box.getAttribute('data-status') === 'Solved') {
+                        box.classList.remove('unsolved', 'processing');
+                        box.classList.add('solved');
+                    } else if (box.getAttribute('data-status') === 'Unsolved') {
+                        box.classList.remove('solved', 'processing');
+                        box.classList.add('unsolved');
+                    } else if (box.getAttribute('data-status') === 'Processing') {
+                        box.classList.remove('solved', 'unsolved');
+                        box.classList.add('processing');
+                    }
+                });
+            }
+
+            // Event listener for filter selects
+            filterSelects.forEach(select => {
+                select.addEventListener('change', filterFraudCases);
+            });
+
+            // Initial showing of all fraud cases
+            fraudList.querySelectorAll('.fraud-box').forEach(box => {
+                box.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

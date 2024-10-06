@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="icon">
+            <h2 class="logo">Fraud<br>Guardian</h2>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="stats.html">Stats</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Complaint Form -->
+        <div class="complaint-form">
+            <h2>Report Fraud or File a Complaint</h2>
+            <p>If you have experienced fraud or would like to file a complaint, please use the form below:</p>
+
+            <form id="complaintForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="incidentDateTime">Date and Time of Incident:</label>
+                <input type="datetime-local" id="incidentDateTime" name="incidentDateTime" required>
+
+                <label for="incidentDescription">Description of Incident:</label>
+                <textarea id="incidentDescription" name="incidentDescription" rows="4" required></textarea>
+
+                <label for="fraudType">Type of Fraud:</label>
+                <select id="fraudType" name="fraudType">
+                    <option value="phishing">Phishing</option>
+                    <option value="identityTheft">Identity Theft</option>
+                    <option value="onlineScams">Online Scams</option>
+                    <option value="hacking">Hacking</option>
+                    <option value="malware">Malware</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="fraudWebsite">Website URL involved in the Fraud (if applicable):</label>
+                <input type="url" id="fraudWebsite" name="fraudWebsite">
+
+                <label for="amountLost">Amount Lost (if any):</label>
+                <input type="number" id="amountLost" name="amountLost">
+
+                <label for="paymentMethod">Payment Method Used:</label>
+                <select id="paymentMethod" name="paymentMethod">
+                    <option value="creditCard">Credit Card</option>
+                    <option value="debitCard">Debit Card</option>
+                    <option value="bankTransfer">Bank Transfer</option>
+                    <option value="cryptocurrency">Cryptocurrency</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="financialInstitution">Financial Institution Involved (if any):</label>
+                <input type="text" id="financialInstitution" name="financialInstitution">
+
+                <label for="suspiciousLinks">Were there any Suspicious Links or Attachments?</label>
+                <input type="checkbox" id="suspiciousLinks" name="suspiciousLinks" value="yes">
+
+                <label for="reportedToAuthority">Did you report this incident to any other authority?</label>
+                <input type="checkbox" id="reportedToAuthority" name="reportedToAuthority" value="yes">
+
+                <label for="authorityDetails">If Yes, provide details:</label>
+                <textarea id="authorityDetails" name="authorityDetails" rows="4"></textarea>
+
+                <label for="consent">Consent and Confirmation:</label>
+                <input type="checkbox" id="consent" name="consent" required>
+                <span>I confirm that the information provided is accurate to the best of my knowledge and consent to the collection and processing of my personal data for the purpose of investigating this incident.</span>
+
+                <div class="captcha">
+                    <!-- CAPTCHA Code Here -->
+                </div>
+
+                <button type="submit">Submit Complaint</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("complaintForm").addEventListener("submit", async function (event){
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                incidentDateTime: document.getElementById("incidentDateTime").value,
+                incidentDescription: document.getElementById("incidentDescription").value,
+                fraudType: document.getElementById("fraudType").value,
+                fraudWebsite: document.getElementById("fraudWebsite").value,
+                amountLost: document.getElementById("amountLost").value,
+                paymentMethod: document.getElementById("paymentMethod").value,
+                financialInstitution: document.getElementById("financialInstitution").value,
+                suspiciousLinks: document.getElementById("suspiciousLinks").checked,
+                reportedToAuthority: document.getElementById("reportedToAuthority").checked,
+                authorityDetails: document.getElementById("authorityDetails").value,
+                consent: document.getElementById("consent").checked
+            };
+        try {
+
+            const response = await fetch("http://localhost:5000/submitComplaint", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            if(response.ok){
+                console.log('Form data stored successful');
+                document.getElementById('complaintForm').reset();
+                alert('Your form has been submitted successfully.');
+            }else{
+                console.error('Failed to store form data.')
+            }
+        }catch(error){
+            console.error('Error storing form data: ',error)
+        }
+           
+        });
+    </script>
+</body>
+</html>

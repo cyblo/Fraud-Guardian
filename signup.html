@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SignupPage</title>
+<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+<div class="main">
+  <div class="navbar">
+    <div class="icon">
+      <h2 class="logo">Fraud Guardian</h2>
+    </div>
+
+    <div class="menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="search">
+      <input
+        class="srch"
+        type="search"
+        name=""
+        placeholder="Search for the best.."
+      />
+      <a href="#"><button class="btn">Search</button></a>
+    </div>
+  </div>
+  <div class="form">
+    <h2>Sign up</h2>
+    <input id="signup-username" type="text" name="username" placeholder="Enter Username" />
+    <input id="signup-email" type="email" name="email" placeholder="Enter Email" />
+    <input id="signup-password" type="password" name="password" placeholder="Enter Password" />
+    <button id="signupBtn" class="btnn">Sign up</button>
+  </div>
+</div>
+<script>
+document.getElementById("signupBtn").addEventListener("click", registerUser);
+
+function registerUser() {
+  const usernameInput = document.getElementById("signup-username");
+  const emailInput = document.getElementById("signup-email");
+  const passwordInput = document.getElementById("signup-password");
+
+  const username = usernameInput.value;
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  fetch("http://localhost:5000/registerUser", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username, email, password }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert("Signup successful!");
+        window.location.href = "index.html"; // Redirect to index.html
+      } else {
+        console.error("Registration failed");
+      }
+    })
+    .catch((error) => console.error("Error during registration:", error));
+}
+</script>
+</body>
+</html>

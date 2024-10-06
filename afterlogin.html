@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Guardian</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Fraud<br>Guardian</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="stats.html">Stats</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Search for the best..">
+                <a href="#"><button class="btn">Search</button></a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Unmask Deceit, Report Fraud: Empowering You to Safeguard Trust</h1>
+            <p class="par">Empower vigilance and protect integrity with our fraud reporting platform. Anonymously report suspicious activities, ensuring a secure and trustworthy community for all.</p>
+
+            <!-- <button class="cn"><a href="signup.html">Join Us!</a></button>
+
+            <div class="form">
+                <h2>Login Here</h2>
+                <form id="loginForm" onsubmit="return validateForm()">
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number, one uppercase, and one lowercase letter, and at least 8 or more characters" required>
+                    <button type="submit" class="btnn" onclick="loginUser(event)">Login</button> 
+                </form>
+                <p class="link">Don't have an account?<br>
+                <a href="signup.html">Sign up here</a></p>
+            </div> -->
+            
+        </div>
+
+    </div>
+    <script>
+        // function validateForm() {
+        //     var email = document.getElementById("email").value;
+        //     var password = document.getElementById("password").value;
+        //     var passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+        //     if (!email || !password) {
+        //         alert("Please enter both email and password.");
+        //         return false;
+        //     }
+
+        //     if (!passwordPattern.test(password)) {
+        //         alert("Password must contain at least one number, one uppercase, and one lowercase letter, and at least 8 or more characters.");
+        //         return false;
+        //     }
+
+        //     // If all validation passed, allow form submission
+        //     return true;
+        // }
+
+        // function loginUser(event) {
+        //     event.preventDefault();
+        //     const email = document.getElementById("email").value;
+        //     const password = document.getElementById("password").value;
+
+        //     if (!email || !password) {
+        //         console.error("Email and password are required");
+        //         return;
+        //     }
+
+        //     fetch("http://localhost:5000/userlogin", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({ email, password }),
+        //     })
+        //     .then((response) => {
+        //         if (response.ok) {
+        //             console.log("Login successful");
+        //             window.location.href = "index.html"; // Redirect to index.html
+        //         } else {
+        //             console.error("Login failed");
+        //             alert("Incorrect email or password"); // Display error message
+        //         }
+        //     })
+        //     .catch((error) => console.error("Error during login:", error));
+        // }
+    </script>
+</body>
+</html>
